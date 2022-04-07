@@ -54,7 +54,7 @@ try{
     foreach (var repo in repositories){
         var commit = await client.Repository.Commit.Get(username, repo.Name, "HEAD");
         var isCommitVerified = commit.Commit.Verification.Verified;
-        if (isCommitVerified){
+        if (!isCommitVerified){
             repoWarning = true;
             Console.ForegroundColor = ConsoleColor.Red;
             WriteLine($"- Warning: [{repo.HtmlUrl}] has unverified commit: [{commit.Sha}]");
